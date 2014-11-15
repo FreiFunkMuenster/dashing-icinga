@@ -1,0 +1,43 @@
+<script type='text/javascript'>
+$(function() {
+  Dashing.widget_base_dimensions = [370, 340]
+  Dashing.numColumns = 5
+});
+</script>
+
+<% content_for :title do %>Icinga dashboard<% end %>
+<div class="gridster">
+  <ul>
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-view="Clock"></div>
+      <i class="icon-time icon-background"></i>
+    </li>
+
+    <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="icinga-hosts" data-view="Simplemon" data-title="Icinga hosts"></div>
+    </li>
+
+    <li data-row="1" data-col="2" data-sizex="1" data-sizey="3">
+      <div data-id="icinga-hosts-latest" data-view="Table" data-title="Icinga host problems" class="icinga-latest-problems"></div>
+    </li>
+
+    <li data-row="1" data-col="3" data-sizex="1" data-sizey="3">
+      <div data-id="icinga-services-latest" data-view="Table" data-title="Icinga service problems" class="icinga-latest-problems"></div>
+    </li>
+
+    <li data-row="3" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="icinga-services" data-view="Simplemon" data-title="Icinga services"></div>
+    </li>
+
+    <li data-row="1" data-col="4" data-sizex="1" data-sizey="1">
+      <div data-id="node_count" data-view="Simplemon" data-title="Node count"></div>
+    </li>
+
+    <li data-row="2" data-col="4" data-sizex="1" data-sizey="1">
+      <div data-id="client_count" data-view="Simplemon" data-title="Client count"></div>
+    </li>
+
+    <li data-row="3" data-col="4" data-sizex="1" data-sizey="1">
+      <div data-id="gateway_count" data-view="Simplemon" data-title="Gateway count"></div>
+    </li>
+</div>
