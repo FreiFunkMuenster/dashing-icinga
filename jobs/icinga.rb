@@ -108,13 +108,14 @@ def request_status(url, user, pass, type)
 
   uri = URI.parse(url + "?" + url_part + "&nostatusheader&jsonoutput&sorttype=1&sortoption=6")
 
-  http = Net::HTTP.new(uri.host, uri.port)
-  request = Net::HTTP::Get.new(uri.request_uri)
-  if (user and pass)
-    request.basic_auth(user, pass)
+  Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+    request = Net::HTTP::Get.new uri
+    if (user and pass)
+      request.basic_auth(user, pass)
+    end
+    response = http.request(request)
+    return JSON.parse(response.body)["status"][type+"_status"]
   end
-  response = http.request(request)
-  return JSON.parse(response.body)["status"][type+"_status"]
 end
 
 def get_status_service(url, user, pass)
@@ -248,4 +249,3 @@ def get_status_host(url, user, pass)
     "latest_moreinfo" => latest_moreinfo
   }
 end
-
